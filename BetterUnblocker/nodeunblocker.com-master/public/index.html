@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Docs</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- header font -->
+  <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet" type="text/css">
+
+  <!-- body font -->
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  <style type="text/css">
+  @-webkit-keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+@keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+body {
+  background: linear-gradient(238deg, #fd8800, #fd008f, #9700fd, #003dfd, #05c7e6, #4bd58d);
+  background-size: 1200% 1200%;
+  -webkit-animation: rainbow 20s ease infinite;
+  animation: rainbow 10s ease infinite;
+}
+
+
+    /* fonts */
+    h3 {
+      font-size: 20px;
+text-align: center;
+font-family: 'Righteous';
+color:rgb(255, 255, 255);
+transition: 0.6s;
+    }
+  text {
+    font-size: 20px;
+text-align: center;
+font-family: 'Righteous';
+color:rgb(255, 255, 255);
+transition: 0.6s;
+  }
+
+    body { font-family: 'Righteous' ;  letter-spacing: 1px;}
+    h1 {
+font-size: 100px;
+text-align: center;
+font-family: 'Righteous';
+color:rgb(255, 255, 255);
+transition: 0.6s;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20vh);
+    visibility: hidden;
+    transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+    will-change: opacity, visibility;
+  }
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+    
+  
+    /* colors */
+    body { background-color: #1E2124; color: white;}
+    .container { background-color: #1E2124; border-color: #1E2124}
+    a { color: #1E2124; }
+    a:hover {color: #1E2124 }
+
+	#error {  border:1px dotted white; background: #1E2124; }
+
+    
+    /* layout */
+    body { text-align: center; }
+    
+    p {   }
+
+    .main, .footer { padding: 1px 10px 0 10px; }
+    
+    #error {display: none; padding: 5px 10px; margin: 30px 10px; }
+    
+    form ul { list-style-type: none; padding-left: 25px;}
+    input[type=text] { width: 640px; max-width: calc(100% - 8em) }
+    
+    .footer { position: relative; clear: both;}
+    .footer p { margin:0; position: absolute; bottom: 10px;  right: 10px; padding-left: 10px; }
+    
+    #google-ad {
+        text-align: center;
+        margin: 10px auto;
+    }
+    @media(min-width: 768px) {
+        #google-ad {
+            margin: 0;
+            float:right; 
+            margin:4px 2px 2px 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  
+    <div class="main">
+  
+      <h1>BetterUnblocker</h1>
+      
+      <div id="error"></div>
+
+      <form action="no-js" method="get" id="unblocker-form">
+        <maintext>
+          URL: 
+          <input type="text" id="url" name="url" autofocus="autofocus" />
+          <input type="submit" value="Go"/>
+        </maintext>
+
+      </form>
+<!-- Nodeunblocker.com -->
+</div>
+      
+      <h3>About BetterUnblocker</h3>
+      <maintext>BetterUnblocker is a web proxy, similar to CroxyProxy, that allows students to bypass access blocked websites. </maintext>
+      <maintext>It's designed to be extremely fast and compatible. BetterUnblocker is build in JavaScript and HTML.  </maintext>
+      <maintext>The build you are on was made by IanKava and Nfrenly.</main>
+
+    </div>
+    
+    <div class="footer">
+      <p>
+    </div>
+  
+  </div>
+	<script>
+		function $(id){
+			return document.getElementById(id);
+		}
+		
+		$('unblocker-form').onsubmit = function(){
+			var url = $('url').value;
+			if(url.substr(0,4) != "http"){
+				url = "http://" + url;
+			}
+			window.location = location.protocol + '//' + location.host + '/proxy/' + url;
+			return false;
+		};
+		
+		function checkError(){
+			var search = window.location.search;
+			var start = search.indexOf('error=');
+			if(start > -1){
+				var stop = search.indexOf('&', start);
+				if(stop == -1){ stop = undefined; }
+				// +6 for "error="
+				var err = search.substr(start+6, stop);
+                var $error = $('error');
+				$error.innerText = $error.textContent = decodeURIComponent(err);
+				$error.style.display = "block";
+			}
+		}
+    
+		window.onload = function() { 
+			$('url').focus(); 
+			checkError(); 
+		}
+	</script>
+  
+  
+</body>
+</html>
